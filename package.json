@@ -1,0 +1,16 @@
+{
+  "name": "Node WinAPI Test",
+  "version": "0.0.0",
+  "description": "Node WinAPI Test",
+  "main": "main.js",
+  "private": true,
+  "dependencies": {
+    "bindings": "~1.5.0",
+    "express": "^4.19.2",
+    "node-addon-api": "^7.0.0"
+  },
+  "scripts": {
+    "test": "node main.js"
+  },
+  "gypfile": true
+}
