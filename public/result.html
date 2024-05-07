@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>User test</title>
+		<script>
+			function back () {
+				window.location.replace("/")
+			}
+
+			function check_user(user) {
+				var xhr = new XMLHttpRequest();
+    			xhr.open("POST", "/user", true);
+    			xhr.setRequestHeader('Content-Type', 'application/json');
+    			xhr.send(JSON.stringify({
+    			    user: user
+    			}));
+			
+    			xhr.onreadystatechange = function() {
+    			    if (xhr.readyState == XMLHttpRequest.DONE) {
+						if (xhr.status == 404) {
+							document.getElementById("info").innerHTML = "Пользователя " + user + " нет"
+						}
+
+						if (xhr.status == 200) {
+							var json = JSON.parse(xhr.responseText)
+							document.getElementById("info").innerHTML = "Пользователь " + user + " имеет привелегию " + json.priv
+						}
+    			    }
+    			}
+			}
+
+			const urlParams = new URLSearchParams(window.location.search);
+			var user = urlParams.get("user")
+			check_user(user)
+		</script>
+	</head>
+	<body>
+		<p id="info"></p>
+		<button onclick="back()">Назад</button>
+	</body>
+</html>
